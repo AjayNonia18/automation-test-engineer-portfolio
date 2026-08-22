@@ -430,7 +430,7 @@ body.dark-mode .button.ghost {
 .hero-copy h2 {
   margin: 0 0 1.6rem;
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-size: clamp(1.08rem, 1.65vw, 1.55rem);
   line-height: 1.35;
   color: var(--text-soft);
   font-weight: 500;
@@ -482,7 +482,30 @@ body.dark-mode .button.ghost {
 
 .hero-visual {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.hero-cta {
+  justify-content: center;
+  width: min(350px, 86%);
+  margin-top: 1rem;
+}
+
+.hero-cta .button {
+  background: transparent;
+  color: #dff4ff;
+  border-color: rgba(145, 211, 255, 0.42);
+  box-shadow: none;
+}
+
+.hero-cta .button:hover,
+.hero-cta .button:focus-visible {
+  background: #8ad4ff;
+  border-color: #bcecff;
+  color: #062039;
+  box-shadow: 0 10px 24px rgba(89, 192, 246, 0.28);
 }
 
 .profile-card {
@@ -517,6 +540,11 @@ body.dark-mode .profile-card {
   object-fit: cover;
   object-position: 46% 38%;
   filter: saturate(0.92) contrast(1.06) brightness(0.9);
+}
+
+.profile-image-wrap a {
+  display: block;
+  height: 100%;
 }
 
 .about-grid,
@@ -783,6 +811,12 @@ body.dark-mode .contact-form {
 }
 
 .expertise-card {
+  min-height: 190px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, rgba(15, 33, 55, 0.96), rgba(11, 24, 38, 0.9));
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 

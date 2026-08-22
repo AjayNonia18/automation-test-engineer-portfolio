@@ -151,3 +151,28 @@ if (form) {
     formStatus.className = 'form-status success';
   });
 }
+
+const resumeDownload = document.querySelector('.hero-cta a[download]');
+
+if (resumeDownload) {
+  resumeDownload.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(resumeDownload.href);
+      if (!response.ok) throw new Error('Resume download failed.');
+
+      const resumeBlob = await response.blob();
+      const downloadUrl = URL.createObjectURL(resumeBlob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = downloadUrl;
+      downloadLink.download = resumeDownload.download || 'AjayNonia_Resume.pdf';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+      window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    } catch (error) {
+      window.open(resumeDownload.href, '_blank', 'noopener,noreferrer');
+    }
+  });
+}
