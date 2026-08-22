@@ -26,6 +26,10 @@ if (mobileMenuToggle && siteNav) {
     siteNav.classList.toggle('active');
   });
 
+  window.addEventListener('scroll', () => {
+    siteNav.classList.remove('active');
+  }, { passive: true });
+
   navLinks.forEach((link) => {
     link.addEventListener('click', () => {
       siteNav.classList.remove('active');
@@ -72,7 +76,7 @@ const animateCounter = (element) => {
   requestAnimationFrame(tick);
 };
 
-const counters = document.querySelectorAll('.impact-number');
+const counters = document.querySelectorAll('.impact-number[data-target]');
 const counterObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -131,8 +135,19 @@ if (form) {
       return;
     }
 
-    formStatus.textContent = 'Thanks for reaching out! Your message has been captured.';
+    const recipient = 'ajaynonia1803@gmail.com';
+    const subject = encodeURIComponent(fields.subject.value.trim());
+    const body = encodeURIComponent(
+      `Name: ${fields.name.value.trim()}\nEmail: ${fields.email.value.trim()}\n\n${fields.message.value.trim()}`
+    );
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`;
+    const composeWindow = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+
+    if (!composeWindow) {
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    formStatus.textContent = 'Your email draft is ready to send.';
     formStatus.className = 'form-status success';
-    form.reset();
   });
 }
