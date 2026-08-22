@@ -149,13 +149,35 @@ body.dark-mode .site-header {
   gap: 0.55rem;
 }
 
-.brand::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #8ad4ff);
-  box-shadow: 0 0 0 3px rgba(56, 168, 255, 0.18);
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--primary);
+  filter: drop-shadow(0 0 8px rgba(56, 168, 255, 0.3));
+}
+
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(56, 168, 255, 0.14);
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand-mark .brand-check {
+  fill: none;
+  stroke: #dff4ff;
+  stroke-width: 2.4;
+}
+
+.brand-mark .brand-node {
+  fill: none;
+  stroke: #8ad4ff;
+  stroke-width: 1.3;
 }
 
 .site-nav {
