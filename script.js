@@ -176,3 +176,32 @@ if (resumeDownload) {
     }
   });
 }
+
+const availabilityStatus = document.querySelector('#availability-status');
+const daysRemaining = document.querySelector('#days-remaining');
+const currentTimestamp = document.querySelector('#current-timestamp');
+const availableFrom = new Date(2026, 10, 16);
+
+const updateAvailability = () => {
+  const now = new Date();
+  const remaining = Math.max(0, Math.ceil((availableFrom - now) / 86400000));
+
+  if (remaining === 0) {
+    availabilityStatus.textContent = 'Available Now';
+    daysRemaining.textContent = '0';
+  } else {
+    availabilityStatus.textContent = 'Serving Notice Period';
+    daysRemaining.textContent = remaining;
+  }
+
+  currentTimestamp.dateTime = now.toISOString();
+  currentTimestamp.textContent = `Current time: ${now.toLocaleString([], {
+    dateStyle: 'medium',
+    timeStyle: 'medium'
+  })}`;
+};
+
+if (availabilityStatus && daysRemaining && currentTimestamp) {
+  updateAvailability();
+  window.setInterval(updateAvailability, 1000);
+}
