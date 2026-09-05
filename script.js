@@ -166,7 +166,7 @@ if (resumeDownload) {
       const downloadUrl = URL.createObjectURL(resumeBlob);
       const downloadLink = document.createElement('a');
       downloadLink.href = downloadUrl;
-      downloadLink.download = resumeDownload.download || 'AjayNonia_Resume.pdf';
+      downloadLink.download = resumeDownload.download || 'AjayResume.pdf';
       document.body.appendChild(downloadLink);
       downloadLink.click();
       downloadLink.remove();
